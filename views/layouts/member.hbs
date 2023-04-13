@@ -15,6 +15,15 @@
         onclick="window.location.href='/signIn/AllProducts'">Product</button>
     </div>
 
+    <div class="float-end">
+      <h5 class="float-end" style="margin: 10px ;">HELLO {{acc.fullname}}</h5>
+    <form action="/adminSearch">
+      <div class="form-group">
+        <input type="text" class="form-control" id="searchInput" placeholder="Search..." name="search">
+      </div>
+    </form>
+    </div>
+
     <div class="dropdown float-end">
       <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
         aria-expanded="false">
@@ -73,7 +82,8 @@
           <form action="/addUser" method="post" enctype="multipart/form-data">
             <div class="mb-3 mt-3">
               <label for="fullnameAdd">Fullname:</label>
-              <input type="text" class="form-control" id="fullnameAdd" name="fullnameAdd" placeholder="Fullname" required>
+              <input type="text" class="form-control" id="fullnameAdd" name="fullnameAdd" placeholder="Fullname"
+                required>
             </div>
             <div class="mb-3 mt-3">
               <label for="emailAdd">Email:</label>
@@ -85,11 +95,12 @@
             </div>
             <div class="mb-3">
               <label for="avatar">Avatar:</label>
-              <input type="file" name="avatar" id="avatar" accept="image/*" required/>
+              <input type="file" name="avatar" id="avatar" accept="image/*" required />
             </div>
             <div class="mb-3 mt-3">
               <label for="passwordAdd">Password:</label>
-              <input type="text" class="form-control" id="passwordAdd" name="passwordAdd" placeholder="password" required>
+              <input type="text" class="form-control" id="passwordAdd" name="passwordAdd" placeholder="password"
+                required>
             </div>
             <div class="mb-3 mt-3">
               <label for="roleAdd">Role:</label>
@@ -98,7 +109,8 @@
         </div>
 
         <div class="modal-footer">
-          <button type="submit" class="btn btn-success" data-bs-dismiss="modal" id="saveAdd" value="upload">Save</button>
+          <button type="submit" class="btn btn-success" data-bs-dismiss="modal" id="saveAdd"
+            value="upload">Save</button>
           <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
           </form>
         </div>

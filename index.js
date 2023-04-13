@@ -193,8 +193,6 @@ app.post('/editUser/:id', async (req, res) => {
   res.redirect('/signIn/AllUsers');
 });
 
-
-
 app.delete("/deleteU/:id", async function (req, res) {
   const id = req.params.id;
   const doc = await userM.findByIdAndDelete(id).lean();
@@ -218,6 +216,17 @@ app.post('/editProfile/:id', async (req, res) => {
   res.redirect(req.headers.referer);
 });
 
+app.get("/AdminSearch", async (req, res) => {
+  try {
+    const name = req.query.search;
+    const userData = await userM.find({ fullname: { $regex: name, $options: "i" } }).lean();
+    let acc = req.cookies.user;
+    res.render('main', { layout: 'member', userData, acc });
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+});
+
 ////
 
 //
@@ -233,7 +242,7 @@ app.post("/addProduct", upload.single("avatar"), async (req, res) => {
   let userName = req.body.userNAdd;
   let avatar = `image/${req.file.originalname}`;
   let newProduct = {
-    name,price,avatar,color,type,userID,userName
+    name, price, avatar, color, type, userID, userName
   };
   console.log(newProduct);
   try {
@@ -260,8 +269,8 @@ app.get('/editP/:id', async (req, res) => {
 
 app.post('/editProduct/:id', async (req, res) => {
   const id = req.params.id;
-  const { name,price,color,type,userID,userName } = req.body;
-  const doc = await productM.findByIdAndUpdate(id, { name,price,color,type,userID,userName }).lean();
+  const { name, price, color, type, userID, userName } = req.body;
+  const doc = await productM.findByIdAndUpdate(id, { name, price, color, type, userID, userName }).lean();
   console.log(id, doc);
   res.redirect('/signIn/AllProducts');
 });
